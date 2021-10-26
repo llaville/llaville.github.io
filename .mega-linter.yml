@@ -1,0 +1,22 @@
+PRINT_ALPACA: false
+SHOW_ELAPSED_TIME: true
+EXCLUDED_DIRECTORIES: [".git"]
+IGNORE_GITIGNORED_FILES: true
+ENABLE:
+    - ACTION
+    - EDITORCONFIG
+    - MARKDOWN
+    - YAML
+DISABLE_LINTERS:
+    - YAML_V8R
+EDITORCONFIG_EDITORCONFIG_CHECKER_CLI_LINT_MODE: project
+MARKDOWN_MARKDOWNLINT_CONFIG_FILE: ".markdown-lint.json"
+MARKDOWN_MARKDOWNLINT_FILTER_REGEX_EXCLUDE: "(\\.github)"
+YAML_PRETTIER_FILTER_REGEX_EXCLUDE: "(\\.github)" # As it cannot be added in .gitignore for ML actionlint linter
+YAML_YAMLLINT_FILTER_REGEX_EXCLUDE: "(\\.github)" # As it cannot be added in .gitignore for ML actionlint linter
+CONFIG_REPORTER: false
+UPDATED_SOURCES_REPORTER: false
+#TEXT_REPORTER: true # cannot be set to true, and should use default value (true), otherwise TAP REPORTER is also generated. See https://github.com/nvuillam/mega-linter/issues/744
+CONSOLE_REPORTER: true
+LOG_FILE: mega-linter-v4.log
+LOG_LEVEL: INFO
