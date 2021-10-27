@@ -1,0 +1,40 @@
+---
+name: GitHub Pages
+
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+
+jobs:
+    deploy:
+        name: Deploy to GH Pages
+        runs-on: ubuntu-latest
+        steps:
+            -   # Git Checkout
+                name: Checkout Code
+                uses: actions/checkout@v2
+                with:
+                    persist-credentials: false
+
+            -   # Setup Python version
+                name: Set up Python runtime
+                uses: actions/setup-python@v2
+                with:
+                    python-version: 3.x
+
+            -   # Install Material for MkDocs
+                name: Install Material for MkDocs
+                run: pip install mkdocs-material
+
+            -   # Build and deploy Documentation
+                name: Build Docs
+                run: mkdocs build
+
+            -   # Deploy
+                name: Deploy Docs
+                if: ${{ github.ref == 'refs/heads/master' }}
+                with:
+                    github_token: ${{ secrets.GITHUB_TOKEN }}
+                    publish_dir: ./site
