@@ -28,11 +28,11 @@ jobs:
                 name: Install Material for MkDocs
                 run: pip install mkdocs-material
 
-            -   # Build and deploy Documentation
+            -   # Build Documentation
                 name: Build Docs
                 run: mkdocs build
 
-            -   # Deploy
+            -   # Deploy Documentation
                 name: Deploy Docs
                 if: ${{ github.ref == 'refs/heads/master' }}
                 uses: peaceiris/actions-gh-pages@v3
