@@ -24,43 +24,45 @@ I've adopted the [peaceiris/actions-gh-pages](https://github.com/peaceiris/actio
 
 <1> [Checkout Project Source Code](https://github.com/actions/checkout).
 ```yaml
-     -   # Git Checkout
-        name: Checkout Code
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
+-   # Git Checkout
+    name: Checkout Code
+    uses: actions/checkout@v2
+    with:
+        persist-credentials: false
 ```
 
 <2> [Set up your GitHub Actions workflow with a specific version of python](https://github.com/actions/setup-python).
 ```yaml
-      -   # Setup Python version
-        name: Set up Python runtime
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.x
+-   # Setup Python version
+    name: Set up Python runtime
+    uses: actions/setup-python@v2
+    with:
+        python-version: 3.x
 ```
 
 <3> [Install Material for MkDocs](https://squidfunk.github.io/mkdocs-material/getting-started/#with-pip) with pip.
 ```yaml
-     -   # Install Material for MkDocs
-       name: Install Material for MkDocs
-       run: pip install mkdocs-material
+-   # Install Material for MkDocs
+    name: Install Material for MkDocs
+    run: pip install mkdocs-material
 ```
 
 <4> Build documentation with [MkDocs](https://www.mkdocs.org/) one of the most famous [static site generators](https://jamstack.org/generators/)
 ```yaml
-      -   # Build Documentation
-        name: Build Docs
-        run: mkdocs build
+-   # Build Documentation
+    name: Build Docs
+    run: mkdocs build
 ```
 
 <5> Deploy documentation to [Github Pages](https://pages.github.com/)
 ```yaml
-      -   # Deploy Documentation
-        name: Deploy Docs
-        if: ${{ github.ref == 'refs/heads/master' }}
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site
+-   # Deploy Documentation
+    name: Deploy Docs
+    if: ${{ github.ref == 'refs/heads/master' }}
+    uses: peaceiris/actions-gh-pages@v3
+    with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./site
+        full_commit_message: "Deployed ${{ github.sha }} with MkDocs"
+        force_orphan: true
 ```
