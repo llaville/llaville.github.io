@@ -65,4 +65,6 @@ I've adopted the [peaceiris/actions-gh-pages](https://github.com/peaceiris/actio
         publish_dir: ./site
         full_commit_message: "Deployed ${{ github.sha }} with MkDocs"
         force_orphan: true
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
 ```
